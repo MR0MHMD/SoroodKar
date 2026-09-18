@@ -22,16 +22,51 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    "django_daisy",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     "accounts.apps.AccountsConfig",
     "groups.apps.GroupsConfig",
     "payment.apps.PaymentConfig"
 ]
+
+DAISY_SETTINGS = {
+    # Branding
+    'SITE_TITLE': 'پنل ادمین',
+    'SITE_HEADER': 'ناحیه مدیریتی',
+    'INDEX_TITLE': 'سلام به پنل مدیریتی سایت سرودکار خوش آمدید',
+    # 'SITE_LOGO': '/static/finder/img/logo/logo.webp',
+
+
+    # 'EXTRA_STYLES': ['/static/finder/css/them.min.css', '/static/finder/css/bootstrap-icons.css'],
+    # 'EXTRA_SCRIPTS': ['static/finder/js/them.min.js'],
+    'LOAD_FULL_STYLES': False,
+    'SHOW_CHANGELIST_FILTER': True,
+    'DONT_SUPPORT_ME': True,
+    'SIDEBAR_FOOTNOTE': 'ساخته شده با عشق در 2026',
+
+    'DEFAULT_THEME_DARK': True,
+    'SHOW_THEME_SELECTOR': True,
+
+    'APPS_REORDER': {
+        'auth': {
+            'icon': 'fa-solid fa-person-military-pointing',
+            'name': 'احراز هویت',
+            'hide': None,
+            'divider_title': "Auth",
+        },
+        'accounts': {
+            'icon': 'bi bi-people-fill',
+            'name': 'کاربران',
+            'hide': None,
+        },
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -108,3 +143,5 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+AUTH_USER_MODEL = 'accounts.User'

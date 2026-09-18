@@ -1,0 +1,92 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %}ورود به سرودکار{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body p-4 p-md-5">
+                    <!-- Header -->
+                    <div class="text-center mb-4">
+                        <div class="icon-box-media bg-faded-accent text-accent rounded-circle mx-auto mb-3">
+                            <i class="fi-login fs-3"></i>
+                        </div>
+                        <h2 class="h3 fw-bold mb-2">ورود به سرودکار</h2>
+                        <p class="text-muted fs-sm">برای دسترسی به پنل کاربری، وارد شوید.</p>
+                    </div>
+
+                    <!-- Form -->
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Non-field errors -->
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger mb-4">
+                                {% for error in form.non_field_errors %}
+                                    <div class="d-flex align-items-center">
+                                        <i class="fi-alert-circle me-2"></i>
+                                        <span>{{ error }}</span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <!-- Login Field (Phone or Username) -->
+                        <div class="mb-3">
+                            <label for="{{ form.login_field.id_for_label }}" class="form-label">
+                                <i class="fi-user me-1 text-accent"></i>
+                                {{ form.login_field.label }}
+                            </label>
+                            {{ form.login_field }}
+                            {% if form.login_field.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.login_field.errors %}
+                                        <i class="fi-alert-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-4">
+                            <label for="{{ form.password.id_for_label }}" class="form-label">
+                                <i class="fi-lock me-1 text-accent"></i>
+                                {{ form.password.label }}
+                            </label>
+                            {{ form.password }}
+                            {% if form.password.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.password.errors %}
+                                        <i class="fi-alert-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-accent btn-lg">
+                                <i class="fi-login me-2"></i>
+                                ورود به حساب
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Footer Link -->
+                    <div class="text-center mt-4">
+                        <p class="mb-0 fs-sm text-muted">
+                            حساب کاربری ندارید؟
+                            <a href="{% url 'accounts:register' %}" class="text-accent fw-bold text-decoration-none">
+                                ثبت‌نام کنید
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

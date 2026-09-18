@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="fa">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+    <head>
+        <meta charset="UTF-8">
+        <title>سرودکار |
+            {% block title %}{% endblock %}
+        </title>
+    
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="{% block description %}گلتفرم اکو سیستم گرو های سرود{% endblock %}">
+        <meta name="author" content="MR_MHMD">
+    
+        <!-- Viewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <!-- Favicon and Touch Icons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="#">
+        <link rel="icon" type="image/webp" sizes="32x32" href="#">
+        <link rel="icon" type="image/webp" sizes="16x16" href="#">
+        <link rel="manifest" href="#">
+        <link rel="mask-icon" color="#5bbad5" href="#">
+        <meta name="theme-color" content="#ffffff">
+        {% block extra_head %}{% endblock %}
+        <!-- loading_page-->
+        {% block extra_style %}{% endblock %}
+        <!-- Main Theme Styles + Bootstrap-->
+        <link rel="stylesheet" media="screen" href="{% static 'finder/css/theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'finder/css/bootstrap-icons.css' %}">
+    </head>
+
+    <body dir="rtl" data-user-role="{% if user.is_authenticated %}{% if user.is_advertiser %}advertiser{% elif user.is_influencer %}influencer{% elif user.is_team_member %}team_member{% else %}user{% endif %}{% else %}guest{% endif %}">
+        <!-- WinJob — Temporal Gateway Loader -->
+
+        <header class="navbar navbar-expand-lg navbar-dark header fixed-top" data-scroll-header>
+            
+        </header>
+
+        <main class="page-wrapper" style="padding: 2.5rem 0 6rem">
+            {% block content %} {% endblock %}
+        </main>
+
+        <footer class="footer bg-faded-light mt-3">
+        </footer>
+
+        {% block script %}{% endblock %}
+
+        <!-- Main theme script-->
+        <script src="{% static 'finder/js/theme.min.js' %}"></script>
+    </body>
+</html>

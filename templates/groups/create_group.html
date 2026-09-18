@@ -1,0 +1,104 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %}ساخت گروه سرود{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body p-4 p-md-5">
+                    <!-- Header -->
+                    <div class="text-center mb-4">
+                        <div class="icon-box-media bg-faded-success text-success rounded-circle mx-auto mb-3">
+                            <i class="fi-users fs-3"></i>
+                        </div>
+                        <h2 class="h3 fw-bold mb-2">اطلاعات گروه سرود</h2>
+                        <p class="text-muted fs-sm">لطفاً اطلاعات گروه خود را وارد کنید تا پرونده اولیه ساخته شود.</p>
+                    </div>
+
+                    <!-- Form -->
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Non-field errors -->
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger mb-4">
+                                {% for error in form.non_field_errors %}
+                                    <div class="d-flex align-items-center">
+                                        <i class="fi-alert-circle me-2"></i>
+                                        <span>{{ error }}</span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <!-- Group Name -->
+                        <div class="mb-3">
+                            <label for="{{ form.name.id_for_label }}" class="form-label">
+                                <i class="fi-music me-1 text-success"></i>
+                                {{ form.name.label }}
+                            </label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.name.errors %}
+                                        <i class="fi-alert-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Province -->
+                        <div class="mb-3">
+                            <label for="{{ form.province.id_for_label }}" class="form-label">
+                                <i class="fi-map-pin me-1 text-success"></i>
+                                {{ form.province.label }}
+                            </label>
+                            {{ form.province }}
+                            {% if form.province.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.province.errors %}
+                                        <i class="fi-alert-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- City -->
+                        <div class="mb-4">
+                            <label for="{{ form.city.id_for_label }}" class="form-label">
+                                <i class="fi-map-pin me-1 text-success"></i>
+                                {{ form.city.label }}
+                            </label>
+                            {{ form.city }}
+                            {% if form.city.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.city.errors %}
+                                        <i class="fi-alert-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fi-check-circle me-2"></i>
+                                ساخت گروه
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Info Alert -->
+                    <div class="alert alert-info mt-4 mb-0 fs-sm">
+                        <i class="fi-info-circle me-2"></i>
+                        پس از ساخت گروه، برای فعال‌سازی امکانات رشد، باید اشتراک تهیه کنید.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

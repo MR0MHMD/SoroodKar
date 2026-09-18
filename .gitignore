@@ -17,6 +17,7 @@ __pycache__/
 
 # Media & Static
 media/
+static/finder
 
 # IDE
 .idea/

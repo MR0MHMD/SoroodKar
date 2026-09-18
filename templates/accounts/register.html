@@ -1,0 +1,141 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %}ثبت‌نام مدیر گروه{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-sm border-0 rounded-3">
+                <div class="card-body p-4 p-md-5">
+                    <!-- Header -->
+                    <div class="text-center mb-4">
+                        <div class="icon-box-media bg-faded-primary text-primary rounded-circle mx-auto mb-3">
+                            <i class="fi-user-plus fs-3"></i>
+                        </div>
+                        <h2 class="h3 fw-bold mb-2">ثبت‌نام مدیر گروه سرود</h2>
+                        <p class="text-muted fs-sm">برای شروع مسیر رشد گروه خود، اطلاعات زیر را وارد کنید.</p>
+                    </div>
+
+                    <!-- Form -->
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Non-field errors -->
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger mb-4">
+                                {% for error in form.non_field_errors %}
+                                    <div class="d-flex align-items-center">
+                                        <i class="fi-alert-circle me-2"></i>
+                                        <span>{{ error }}</span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <!-- Phone Number -->
+                        <div class="mb-3">
+                            <label for="{{ form.phone_number.id_for_label }}" class="form-label">
+                                <i class="fi-phone me-1 text-primary"></i>
+                                {{ form.phone_number.label }}
+                            </label>
+                            {{ form.phone_number }}
+                            {% if form.phone_number.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.phone_number.errors %}
+                                        <i class="fi-alert-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">این شماره برای ورود به حساب کاربری استفاده می‌شود.</div>
+                        </div>
+
+                        <!-- Username -->
+                        <div class="mb-3">
+                            <label for="{{ form.username.id_for_label }}" class="form-label">
+                                <i class="fi-user me-1 text-primary"></i>
+                                {{ form.username.label }}
+                            </label>
+                            {{ form.username }}
+                            {% if form.username.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.username.errors %}
+                                        <i class="fi-alert-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Full Name -->
+                        <div class="mb-3">
+                            <label for="{{ form.full_name.id_for_label }}" class="form-label">
+                                <i class="fi-user-check me-1 text-primary"></i>
+                                {{ form.full_name.label }}
+                            </label>
+                            {{ form.full_name }}
+                            {% if form.full_name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.full_name.errors %}
+                                        <i class="fi-alert-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="{{ form.password.id_for_label }}" class="form-label">
+                                <i class="fi-lock me-1 text-primary"></i>
+                                {{ form.password.label }}
+                            </label>
+                            {{ form.password }}
+                            {% if form.password.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.password.errors %}
+                                        <i class="fi-alert-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Password Confirm -->
+                        <div class="mb-4">
+                            <label for="{{ form.password_confirm.id_for_label }}" class="form-label">
+                                <i class="fi-lock me-1 text-primary"></i>
+                                {{ form.password_confirm.label }}
+                            </label>
+                            {{ form.password_confirm }}
+                            {% if form.password_confirm.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.password_confirm.errors %}
+                                        <i class="fi-alert-circle me-1"></i>{{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fi-arrow-left me-2"></i>
+                                ثبت‌نام و ادامه
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Footer Link -->
+                    <div class="text-center mt-4">
+                        <p class="mb-0 fs-sm text-muted">
+                            قبلاً ثبت‌نام کرده‌اید؟
+                            <a href="{% url 'accounts:login' %}" class="text-primary fw-bold text-decoration-none">
+                                ورود به حساب
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
