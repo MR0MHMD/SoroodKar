@@ -1,8 +1,5 @@
 # Virtual environments
 env/
-venv/
-ENV/
-.venv
 
 # Django
 *.log
@@ -12,7 +9,6 @@ db.sqlite3-journal
 
 # Environment variables
 .env
-.env.local
 
 # Python
 __pycache__/
@@ -21,7 +17,6 @@ __pycache__/
 
 # Media & Static
 media/
-staticfiles/
 
 # IDE
 .idea/
